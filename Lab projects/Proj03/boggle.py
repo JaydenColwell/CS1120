@@ -30,7 +30,7 @@ class Boggle:
                         return
                     # If word check doesn't work for that start, it sets location checked to false and continues.
                     self.__checked_board[i][j] = False
-        # Fomatted output for not finding the word in the board.
+        # Formatted output for not finding the word in the board.
         print("I don't see that word.")
         self.check_palindrome(word)
         print("Are we looking at the same board?")
@@ -61,10 +61,13 @@ class Boggle:
         return False
 
     def show_board(self):
+        # Creates a frame string the length of the board.
         frame = "+---+ " * self.__board_size
+        # Loops through rows and prints top frame, middle (in j loop), and bottom frame.
         for i in range(self.__board_size):
             print(frame)
             for j in range(self.__board_size):
+                # For each letter, determines if it is checked yet. Either prints | letter | or |<letter>|.
                 if self.__checked_board[i][j] == False:
                     print(f'| {self.__board[i][j]} | ', end='')
                 else:
