@@ -25,14 +25,16 @@ class Boggle:
                     if self.check_letter(word, (i, j)):
                         # Formatted output for finding word sucessfully
                         print("Nice Job!")
-                        self.check_palindrome(word)
+                        # This print statement utilizes the check_palindrome function to determine whether it is or is not a palindrome.
+                        print(f'The word {word} is a palindrome' if self.check_palindrome(word) else f'The word {word} is not a palindrome')
                         self.show_board()
                         return
                     # If word check doesn't work for that start, it sets location checked to false and continues.
                     self.__checked_board[i][j] = False
         # Formatted output for not finding the word in the board.
         print("I don't see that word.")
-        self.check_palindrome(word)
+        # This print statement utilizes the check_palindrome function to determine whether it is or is not a palindrome.
+        print(f'The word {word} is a palindrome' if self.check_palindrome(word) else f'The word {word} is not a palindrome')
         print("Are we looking at the same board?")
 
     def check_letter(self, word, location, index = 1):
@@ -74,10 +76,9 @@ class Boggle:
                     print(f'|<{self.__board[i][j]}>| ', end='')
             print(f'\n{frame}')
 
-    def check_palindrome(self, word, index = 0):
-        if index > len(word) / 2:
-            print(f'The word {word} is a palindrome.')
-        elif word[index] != word[len(word) - index - 1]:
-            print(f'The word {word} is not a palindrome.')
-        else:
-            self.check_palindrome(word, index + 1)
+    def check_palindrome(self, word):
+        # This is the base case. A single letter will be a palindrome so it turns true.
+        if len(word) <= 1:
+            return True
+        # This will check if the first letter of the word matches the last and if the second letter of the word matches the last as well.
+        return word[0] == word[-1] and self.check_palindrome(word[1:-1])
