@@ -3,7 +3,7 @@ class Car:
         self.__brand = brand
         self.__model = model
         self.__year = year
-        self.__price = price
+        self.__price = int(price)
         self.__type = car_type
 
     def get_brand(self):
@@ -27,4 +27,4 @@ class Car:
     def set_type(self, car_type):
         self.__type = car_type
     def print_info(self):
-        pass
+        print("{:<13} {:<12} {:<6} {:>10,.2f} {:<8}".format(self.__brand, self.__model, self.__year, self.__price, self.__type), end=" ")
