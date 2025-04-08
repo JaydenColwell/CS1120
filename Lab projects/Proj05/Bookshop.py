@@ -71,17 +71,69 @@ class Bookshop:
         return new_list
 
     def step6(self):
-        pass
+        new_list = list()
+        temp_dict = dict()
+        for order in self.orders:
+            for book in order[1:]:
+                if book[0] in temp_dict:
+                    temp_dict[book[0]] += book[1]
+                else:
+                    temp_dict[book[0]] = book[1]
+        max_book = ''
+        max_num = 0
+        for book, num in temp_dict.items():
+            if num > max_num:
+                max_book = book
+                max_num = num
+        new_list.append(max_book)
+        new_list.append(max_num)
+        return new_list
 
     def step7(self):
-        pass
+        new_list = list()
+        for order in self.orders:
+            total = 0
+            for book in order[1:]:
+                total += book[1]
+            total = round(total, 2)
+            new_list.append((order[0], total))
+        new_list = sorted(new_list, key=lambda x: x[1], reverse=True)
+        return new_list
 
     def step8(self):
-        pass
+        total = 0
+        for order in self.orders:
+            for book in order[1:]:
+                total += book[1]
+        return total
 
     def step9(self):
-        pass
+        new_list = list()
+        temp_dict = dict()
+        for order in self.orders:
+            for book in order[1:]:
+                if book[0] in temp_dict:
+                    temp_dict[book[0]] += book[1]
+                else:
+                    temp_dict[book[0]] = book[1]
+        max_book = ''
+        max_num = 0
+        min_book = ''
+        min_num = 1000
+        for book, num in temp_dict.items():
+            if num > max_num:
+                max_book = book
+                max_num = num
+            if num < min_num:
+                min_book = book
+                min_num = num
+        new_list.append(max_book)
+        new_list.append(min_book)
+        return new_list
 
     def step10(self):
-        pass
+        new_list = list()
+        for order in self.orders:
+            new_list.append(len(order))
+        return new_list
 
